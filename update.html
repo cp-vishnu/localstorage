@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+</head>
+<style>
+  .gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+  }
+
+  .gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+  }
+</style>
+
+<body>
+  <section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Update</h2>
+
+                <form>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" id="name" class="form-control form-control-lg" />
+                    <label class="form-label" for="name">Your Name</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="email" class="form-control form-control-lg" />
+                    <label class="form-label" for="email">Your Email</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" class="form-control form-control-lg" />
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="number" id="phone" class="form-control form-control-lg" />
+                    <label class="form-label" for="phone">phone number</label>
+                  </div>
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                    <label class="form-check-label" for="form2Example3g">
+                      I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                      onclick="update()">update</button>
+                  </div>
+
+                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
+                      class="fw-bold text-body"><u>Login here</u></a></p>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+<script>
+  const url = window.location.href; // get the current URL
+
+  // extract the ID from the URL using string manipulation
+  const id = url.substring(url.lastIndexOf('=') + 1);
+
+  console.log(id);
+  var fname = document.getElementById('name')
+  var email = document.getElementById('email')
+  var password = document.getElementById('password')
+  var phone = document.getElementById('phone')
+
+   var userString = localStorage.getItem(id);
+   var user = JSON.parse(userString);
+   console.log(user.email)
+   email.value = user.email
+   password.value =user.password
+  phone.value =user.phone
+  fname.value =user.name
+
+  function update(){
+    var fname = document.getElementById('name').value
+    var email = document.getElementById('email').value
+    var password = document.getElementById('password').value
+    var phone = document.getElementById('phone').value
+
+     var user = {
+      name: fname,
+      email: email,
+      password: password,
+      phone: phone
+    };
+
+    var userInfo = JSON.stringify(user);
+    // count = count + 1;
+    // createCookie('new',user,2)
+    localStorage.setItem(id, userInfo);
+  }
+</script>
+</html>
